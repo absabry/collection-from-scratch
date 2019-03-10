@@ -9,5 +9,5 @@ object Empty extends AbstractList {
 
   override def add(toBeAdded: Int): AbstractList = new List(toBeAdded, Empty)
 
-  override def printElemnts: String = ""
+  override def printElements: String = ""
 }

@@ -9,7 +9,7 @@ abstract class AbstractList {
 
   def add(toBeAdded: Int): AbstractList
 
-  def printElemnts: String
+  def printElements: String
 
-  override def toString: String = "[" + printElemnts + "]"
+  override def toString: String = "[" + printElements + "]"
 }

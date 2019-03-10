@@ -1,5 +1,5 @@
 package traits
 
-trait Predicate {
-
+trait Predicate[-T] {
+  def test(value:T): Boolean
 }

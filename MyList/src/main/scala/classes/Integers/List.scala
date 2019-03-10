@@ -9,8 +9,8 @@ class List(head_val: Int, reminder_list: AbstractList) extends AbstractList {
 
   override def add(toBeAdded: Int): AbstractList = new List(toBeAdded, this)
 
-  override def printElemnts: String = {
+  override def printElements: String = {
     if (reminder_list.isEmpty) head_val.toString
-    else head_val.toString + " " + reminder_list.printElemnts
+    else head_val.toString + " " + reminder_list.printElements
   }
 }
