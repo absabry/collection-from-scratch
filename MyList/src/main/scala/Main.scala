@@ -1,5 +1,7 @@
 import traits.{Predicate, Transformer}
-import classes.{Empty, List, AbstractList}
+import classes.{AbstractList, Empty, List}
+
+import scala.annotation.tailrec
 
 object Main extends App {
  val listOfIntegers: List[Int] =
@@ -42,6 +44,7 @@ object Main extends App {
       /**
         * convert an Array to List
         **/
+      @tailrec
       def utils(i:Int = 0, list: AbstractList[String] = Empty) : AbstractList[String]= {
         if (i == values.length -1) list ++ new List(values(i), Empty)
         else utils(i+1, list ++ new List(values(i), Empty))
@@ -50,8 +53,7 @@ object Main extends App {
     }
 
     override def transform(value: String): AbstractList[String] = {
-      val arr :Array[String] = value.split(" ")
-      valuesToList(arr)
+      valuesToList(value.split(" "))
     }
   }))
 
