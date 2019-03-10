@@ -1,15 +1,16 @@
 package classes
 
-abstract class AbstractList {
-  def head: Int
+abstract class AbstractList[+A] {
+  def head: A
 
-  def tail: AbstractList
+  def tail: AbstractList[A]
 
   def isEmpty: Boolean
 
-  def add(toBeAdded: Int): AbstractList
+  def add[B >: A](toBeAdded: B): AbstractList[B]
 
   def printElemnts: String
 
   override def toString: String = "[" + printElemnts + "]"
+
 }

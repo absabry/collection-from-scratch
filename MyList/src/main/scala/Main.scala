@@ -1,16 +1,22 @@
-import classes.Empty
-import classes.List
+package classes
 
 object Main extends App {
-  val l = Empty
-  println(l)
-  println(l.add(0).add(1)) // add two values
+ val listOfIntegers: List[Int] =
+   new List[Int](0,
+     new List[Int](1,
+       new List[Int](2,
+         new List[Int](3, Empty))))
 
-  val l_1 =  new List(0,
-    new List(1,
-      new List(2,
-        new List(3, Empty))))
-  println(l_1)
+  println("list of integers : " + listOfIntegers)
+
+  val listOfStrings: List[String] =
+    new List[String]("Hello world",
+      new List[String]("that's awesome",
+        new List[String]("Hello you, how are you? I'm " +
+          "good how about you? I'm good thank you for asking",
+          new List[String]("And that's the end of the list of strings", Empty))))
+
+  println("list of strings : " + listOfStrings)
 
 
 }
