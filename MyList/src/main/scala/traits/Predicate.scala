@@ -1,5 +1,8 @@
 package traits
+/*
+Don't use this trait anymore after discovering lambda functions
+ */
 
 trait Predicate[-T] {
-  def test(value:T): Boolean
+  def apply(value:T): Boolean
 }
