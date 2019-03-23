@@ -1,32 +1,10 @@
-import scala.annotation.tailrec
-import classes.{AbstractList, Empty, List}
+
+import classes.utils._
+import classes.{Empty, List}
 
 object Main extends App {
 
-  def createListintegers(): List[Int] = {
-    new List[Int](0,
-      new List[Int](1,
-        new List[Int](2,
-          new List[Int](3, Empty))))
-  }
-  def createListStrings() : List[String] = {
-    new List[String]("Hello world",
-      new List[String]("that's awesome",
-        new List[String]("Hello you, how are you? I'm " +
-          "good how about you? I'm good thank you for asking",
-          new List[String]("And that's the end of the list of strings", Empty))))
-  }
-  def valuesToList(values : Array[String]): AbstractList[String] = {
-    /**
-      * convert an Array to List
-      **/
-    @tailrec
-    def utils(i:Int = 0, list: AbstractList[String] = Empty) : AbstractList[String]= {
-      if (i == values.length -1) list ++ List(values(i), Empty)
-      else utils(i+1, list ++ List(values(i), Empty))
-    }
-    utils()
-  }
+
 
   val listOfIntegers: List[Int] = createListintegers()
   println("list of integers : " + listOfIntegers)
@@ -61,21 +39,61 @@ object Main extends App {
   println("Sortedlist incresing: "+ toSort.sort(sortDesc).printElements)
   println("Sortedlist descreasing: "+ toSort.sort(sortIncr).printElements)
 
+  println("count of list (tailrec way): "+ toSort.count)
+  println("size of list (not a tailrec way)   : "+ toSort.count)
 
-  // TODO implement:
-  // -- zipWith(otherList, funtion to execute for each element)
-  // -- fold(start)(function) (even if i dont know why we should do it)
-  // -- adding combinations with flatmap and maps, then using the same
-  //    using for-comprehension
+  val newList = List(1, List(2, List(3, List(4,Empty))))
+  println(s"zipping this two lists  $newList - $listOfStrings : ")
+  println(newList.zipWith(listOfStrings, (x:Int,y:String) => x + "-" + y))
 
-  // TODO implement collection
-  // implement Maybe collection
-  // implement try if needed?
+  println(fill(10,0)) // create a list of 10 zeros
+  println(fill(10,10)) // create a list of 10 tens
+  val helloworlds = fill(100,"Hello World")
+  println(helloworlds)
+  println(helloworlds.size)
 
-  // TODO BONUS
-  // Transform constructor to apply method??
-  // implement fill, zeros and ones on our List
+
+  // print all combinations between two lists
+  val numbers = List[Int](1,
+     List[Int](2,
+       List[Int](3,
+         List[Int](4,
+          Empty))))
+  val chars = List[Char]('a',
+    List[Char]('b',
+      List[Char]('c',
+        List[Char]('d',
+          Empty))))
+
+  val colors = List[String]("black",
+    List[String]("white",
+      Empty))
+
+  // "iterating"
+  val combinations = numbers.filter(_ % 2 == 0)
+    .map(n => chars.filter(_ >= 'c')
+      .map(c => colors
+        .map(color => s"$c$n-$color")))
+  println(combinations)
+
+  // for-comprehensions
+  // used to make "iterating" part easier
+  // and more comprehensive
+  val forCombinations = for {
+    n <- numbers.filter(_ % 2 == 0)
+    c <- chars.filter(_ >='c')
+    color <- colors
+  } yield s"$c$n-$color"
+  println(forCombinations)
+
+  //val listTest: List[String] = createRndList(10)
+  println("List from 1 to 100: " + createList(1,100))
+  println("List with 10 random values: " + createRandomList(10))
+  println("List with 5 random values: " + createRandomList(5))
+  println("List from a to z: " + createList('a','z'))
+  println("List from A to D: " + createList('A','D'))
+  println("List from X to C: " + createList('X','C'))
+
   // implement join("sep") on our List
-  // implement Map collection
 
 }

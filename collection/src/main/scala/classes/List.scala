@@ -2,6 +2,7 @@ package classes
 
 import scala.annotation.tailrec
 
+
 case class List[+A](head_val: A, reminder_list: AbstractList[A]) extends AbstractList[A] {
   override def head: A = head_val
 
@@ -10,6 +11,17 @@ case class List[+A](head_val: A, reminder_list: AbstractList[A]) extends Abstrac
   override def isEmpty: Boolean = false
 
   override def add[B >: A](toBeAdded: B): AbstractList[B] = List(toBeAdded, this)
+
+  override def count : Int = {
+    @tailrec
+    def utils(result:Int = 0, list:AbstractList[A] = this): Int =
+      if (list.isEmpty) result  else utils(result+1, list.tail)
+    utils()
+  }
+
+  override def size : Int = {
+    1 + tail.size
+  }
 
   override def printElements: String = {
     if (reminder_list.isEmpty) head_val.toString
@@ -51,6 +63,13 @@ case class List[+A](head_val: A, reminder_list: AbstractList[A]) extends Abstrac
     }
 
     putElementInSortedList(head,tail.sort(function))
+  }
+
+  def zipWith[B,R](other:AbstractList[B], function: (A,B)=>R): AbstractList[R] = {
+    if (other.count != count)
+      throw new RuntimeException("This two lists aren't the same size, I don't know what do you want from me...")
+    else
+      List(function(head,other.head), tail.zipWith(other.tail, function))
   }
 
 }
