@@ -1,10 +1,5 @@
-
-import classes.{AbstractList, Empty, List}
-
 import scala.annotation.tailrec
-
-
-
+import classes.{AbstractList, Empty, List}
 
 object Main extends App {
 
@@ -59,7 +54,6 @@ object Main extends App {
   listOfIntegers.foreach(x => print(x + "-"))
 
   // TODO implement:
-  // -- foreach(function we need to execute)
   // -- sort(function from A to A that will compare)
   // -- zipWith(otherList, funtion to execute for each element)
   // -- fold(start)(function) (even if i dont know why we should do it)
@@ -68,6 +62,7 @@ object Main extends App {
 
   // TODO implement collection
   // implement Maybe collection
+  // implement try if needed?
 
   // TODO BONUS
   // Transform constructor to apply method??

@@ -23,4 +23,7 @@ abstract class AbstractList[+A] {
 
   def foreach(function: A => Unit): Unit = Unit
 
+  // sort(function from A to A that will compare)
+  def sort(function: (A,A)=> Int) : AbstractList[A]
+
 }

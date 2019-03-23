@@ -1,5 +1,4 @@
-import classes.Integers.Empty
-import classes.Integers.List
+import classes.Integers.{Empty, List}
 
 object MainIntegers extends App {
   val l = Empty

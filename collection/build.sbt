@@ -1,4 +1,4 @@
-name := "MyList"
+name := "collection"
 
 version := "0.1"
 

@@ -1,6 +1,5 @@
 package classes
 
-
 case object Empty extends AbstractList {
   override def head: Nothing = ???
 
@@ -21,4 +20,6 @@ case object Empty extends AbstractList {
   override def flatMap[B](myTransformer: Nothing => AbstractList[B] ): AbstractList[B] = Empty
 
   override def foreach(function: Nothing => Unit) : Unit = ()
+
+  override def sort(function: (Nothing,Nothing)=> Int) : AbstractList[Nothing] = Empty
 }

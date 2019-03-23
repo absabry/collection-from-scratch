@@ -1,8 +1,9 @@
 package traits
+
 /*
 Don't use this trait anymore after discovering lambda functions
  */
 
-trait Transformer[-A,B] {
-  def apply(value:A) : B
+trait Predicate[-T] {
+  def apply(value:T): Boolean
 }
