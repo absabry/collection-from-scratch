@@ -1,5 +1,7 @@
 package classes
 
+import scala.annotation.tailrec
+
 case class List[+A](head_val: A, reminder_list: AbstractList[A]) extends AbstractList[A] {
   override def head: A = head_val
 
@@ -39,13 +41,16 @@ case class List[+A](head_val: A, reminder_list: AbstractList[A]) extends Abstrac
 
   override def sort(function: (A,A) => Int): AbstractList[A] = {
 
-    def utils(toBeComapredTo: A, travelList:AbstractList[A]): AbstractList[A] ={
-      if (travelList.isEmpty) List(head, Empty)
-      else if (function(toBeComapredTo, travelList.head)>0)  List(toBeComapredTo, utils(travelList.head,travelList.tail))
-      else List(travelList.head, utils(toBeComapredTo,travelList.tail))
+    def putElementInSortedList(toBeComapredTo: A, sortedTail:AbstractList[A]): AbstractList[A] ={
+      if (sortedTail.isEmpty)
+        List(toBeComapredTo, Empty)
+      else if (function(toBeComapredTo, sortedTail.head)>0)
+        List(toBeComapredTo, sortedTail)
+      else
+        List(sortedTail.head, putElementInSortedList(toBeComapredTo,sortedTail.tail))
     }
-    
-    utils(head,tail)
+
+    putElementInSortedList(head,tail.sort(function))
   }
 
 }

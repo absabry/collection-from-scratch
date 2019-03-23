@@ -22,8 +22,8 @@ object Main extends App {
       **/
     @tailrec
     def utils(i:Int = 0, list: AbstractList[String] = Empty) : AbstractList[String]= {
-      if (i == values.length -1) list ++ new List(values(i), Empty)
-      else utils(i+1, list ++ new List(values(i), Empty))
+      if (i == values.length -1) list ++ List(values(i), Empty)
+      else utils(i+1, list ++ List(values(i), Empty))
     }
     utils()
   }
@@ -52,9 +52,17 @@ object Main extends App {
   println("Are they equal? " + (cloneIntegers == listOfIntegers))
 
   listOfIntegers.foreach(x => print(x + "-"))
+  println() // to restore line break
+
+  val toSort = List(2, List(3, List(1, List(0, List(-5, List(22, Empty))))))
+  println("myTesting list : "+ toSort.printElements)
+  val sortIncr = (x:Int,y:Int) => y - x
+  val sortDesc = (x:Int,y:Int) => x - y
+  println("Sortedlist incresing: "+ toSort.sort(sortDesc).printElements)
+  println("Sortedlist descreasing: "+ toSort.sort(sortIncr).printElements)
+
 
   // TODO implement:
-  // -- sort(function from A to A that will compare)
   // -- zipWith(otherList, funtion to execute for each element)
   // -- fold(start)(function) (even if i dont know why we should do it)
   // -- adding combinations with flatmap and maps, then using the same
